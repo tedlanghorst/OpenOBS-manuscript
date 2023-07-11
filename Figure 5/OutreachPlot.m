@@ -2,7 +2,7 @@ clear
 close all
 
 
-dataDir = '/Users/Ted/GDrive/Tanana OBS Project/Travel and field work/January2023/Data/NenanaOBS/';
+dataDir = '/Users/Ted/GDrive/Tanana OBS Project/Travel and field work/January2023_Outreach_IceInstall/Data/NenanaOBS/';
 
 tmp = load([dataDir,'NSS1.mat']);
 bias = quantile(tmp.d.ambient_light,0.01);
@@ -19,9 +19,10 @@ bias = quantile(tmp.d.ambient_light,0.01);
 tmp.d.ambient_light = tmp.d.ambient_light - bias;
 NSS3 = tmp.d;
 
+NSS1_sd = 3.0504;
+
 % plots
 close all
-
 figure
 set(gcf,'Units','normalized')
 set(gcf,'Position',[.25 .4 .2 .2])
@@ -29,9 +30,11 @@ set(gcf,'Position',[.25 .4 .2 .2])
 tiledlayout(2,1,'TileSpacing','compact','Padding','compact')
 ax(1) = nexttile;
 hold on
+patch([NSS1.dt; flip(NSS1.dt)],[NSS1.NTU+NSS1_sd.*3; flip(NSS1.NTU-NSS1_sd.*3)],[0 0.447 0.741],'FaceAlpha',0.25,'LineStyle','none')
 plot(NSS1.dt,NSS1.NTU,'Linewidth',1.5)
-set(gca,'YLim',[0,15])
+set(gca,'YLim',[0,50])
 ylabel("Turbidity (NTU)")
+% legend("NSS1","NSS2","NSS3","location","NorthEast")
 title("Tanana River at Nenana")
 box on
 

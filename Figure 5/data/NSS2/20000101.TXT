@@ -1,0 +1,7 @@
+If found, please contact tlang@live.unc.edu
+Firmware updated: 2023/01/18
+OpenOBS SN:125
+
+time,ambient_light,scattered_light
+946684825,1108,8570
+946684836,1140,8600
